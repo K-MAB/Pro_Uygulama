@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hakkımızda — Pro Uygulama</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme:{ extend:{
+      colors:{ cocoa:'#3b2621', cream:'#efe8e4', brand:{500:'#13547a',300:'#80d0c7'}},
+      boxShadow:{ glow:'0 10px 30px rgba(0,0,0,.12)'}
+    }}}
+  </script>
+
+  <style>
+    /* Cam efekti ve başlık alt çizgisi */
+    .glass{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+    .section{scroll-margin-top:96px}
+
+    /* Reveal animasyonları */
+    .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease }
+    .reveal.show{ opacity:1; transform:translateY(0) }
+    .reveal-delay-1{ transition-delay:.1s } .reveal-delay-2{ transition-delay:.2s }
+    .reveal-delay-3{ transition-delay:.3s } .reveal-delay-4{ transition-delay:.4s }
+
+    /* Yazı “typewriter” efekti (slogan) */
+    @keyframes caret { 50%{opacity:0} }
+    .type:after{ content:"|"; margin-left:4px; animation: caret 1s steps(1) infinite; opacity:.6 }
+  </style>
+</head>
+<body class="bg-cream text-neutral-900">
+
+  <!-- Ortak NAVBAR -->
+  <div id="navbar"></div>
+  <div class="pt-24"></div><!-- fixed navbar boşluğu -->
+
+  <!-- HERO (isteğe göre buraya görsel/slogan eklenebilir) -->
+
+  <!-- Pro Uygulama Kimdir? -->
+  <section id="about-intro" class="section max-w-7xl mx-auto px-6 py-12">
+    <div class="relative overflow-hidden rounded-3xl bg-white shadow-glow">
+      <!-- üst şerit -->
+      <div class="h-2 w-full bg-gradient-to-r from-brand-500 to-brand-300"></div>
+
+      <div class="p-6 md:p-10">
+        <div class="flex items-start gap-3 mb-4">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-500/10 ring-1 ring-brand-500/20">
+            <!-- basit bir “info/house” ikon kombinasyonu -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-8 9 8M5 10v10a1 1 0 001 1h4m8-11v10a1 1 0 01-1 1h-4m-4 0h8" />
+            </svg>
+          </span>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Hakkımızda</h2>
+            <p class="text-sm md:text-base text-neutral-600">Bilgi birikimi, tecrübe ve disiplinli proje yönetimiyle uygulama odaklı çözüm ortağınız.</p>
+          </div>
+        </div>
+
+        <!-- içerik -->
+        <div class="prose max-w-none prose-p:leading-relaxed prose-p:text-neutral-700">
+          <p class="reveal">
+            Pro Uygulama olarak sahip olduğumuz bilgi birikimi, tecrübe ve dinamik kadromuzla çizdirmiş olduğunuz projelerinizi Türkiye’nin her noktasında uygularken düşük maliyet, yüksek kalite ve en kısa zamanda iş sonuçlandırmayı ilke edinmiş olup tüm müşterilerimizin her aşamada memnun kalmalarını önemsemekteyiz.
+          </p>
+          <p class="reveal reveal-delay-1">
+            Puro Uygulama; kurumsal kimliğinin bilincinde olan, modern ilkeleri ön planda tutan, geneleksel değerlerinden taviz vermeyen, güvenilirlik ve kaliteyi amaçlayan “müşteri odaklı” bir firma olarak sektörde kendini kabul ettirmiştir.
+          </p>
+          <p class="reveal reveal-delay-2">
+            Çizdirdiğiniz projelerinizi, konsept tasarımları uygulama aşamalarından proje yönetimine dek projelerin tüm süreçlerinde hizmetlerimizdeki farklılık algımız, trendleri özgün olarak uygulama yeteneğimiz, pozitif bakış açımız ve enerjimizle birlikte Pro Uygulama ekibi olarak, hayal edilen ve çizilen mimari projeleri siz değerli müşterilerimiz için sürdürülebilir bir gerçeklikle uygulamaya özen gösteriyoruz.
+          </p>
+        </div>
+
+        <!-- alt vurgu kutuları -->
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="rounded-2xl ring-1 ring-neutral-200 bg-neutral-50 p-4 reveal">
+            <p class="text-sm font-semibold text-neutral-800">Düşük Maliyet • Yüksek Kalite</p>
+            <p class="text-xs text-neutral-600 mt-1">Optimize edilmiş tedarik & iş planı ile.</p>
+          </div>
+          <div class="rounded-2xl ring-1 ring-neutral-200 bg-neutral-50 p-4 reveal reveal-delay-1">
+            <p class="text-sm font-semibold text-neutral-800">Hızlı Teslim</p>
+            <p class="text-xs text-neutral-600 mt-1">Kritik yol planlama ve sıkı saha koordinasyonu.</p>
+          </div>
+          <div class="rounded-2xl ring-1 ring-neutral-200 bg-neutral-50 p-4 reveal reveal-delay-2">
+            <p class="text-sm font-semibold text-neutral-800">Müşteri Memnuniyeti</p>
+            <p class="text-xs text-neutral-600 mt-1">Her aşamada şeffaf iletişim ve raporlama.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Misyon & Vizyon (kartlar) -->
+  <section class="section max-w-7xl mx-auto px-6 pb-10">
+    <div class="grid md:grid-cols-2 gap-6">
+      <article class="rounded-2xl bg-white p-6 shadow reveal">
+        <h3 class="text-xl font-bold">Misyonumuz</h3>
+        <p class="mt-3 text-neutral-700 leading-relaxed">
+          Pro Uygulama; müşterilerine sunduğu hizmeti yaratıcılık ve sağlamlıkla birleştirmiştir. İnsan psikolojisi
+          zaman ve sağlamlıkla ile başlayan, finansman ve mühendislikle devam eden planlama sürecinde misyonundan
+          taviz vermediği başarı kriterini standart almaktadır. Bugünün ve yarının ihtiyaçlarına cevap verebilecek,
+          sürdürülebilir ve kalıcı, yüksek standartlara sahip, estetik ve kaliteli projeleri uygulamayı ilke edinen
+          Pro Uygulama, insan ile yaşayan ve gerektiğinde onun ihtiyaçlarına göre değişebilen, sürdürülebilir mekânlar
+          uygulamayı bilinçler.
+        </p>
+      </article>
+
+      <article class="rounded-2xl bg-white p-6 shadow reveal reveal-delay-2">
+        <h3 class="text-xl font-bold">Vizyonumuz</h3>
+        <p class="mt-3 text-neutral-700 leading-relaxed">
+          Çizilen projeleri ve yaratıcı fikirleri gerçeğe dönüştüren yenilikçi ve sağlam çözümler sunan bir proje
+          uygulama firması olarak, mimarların çizdiği projeleri kusursuzca hayata geçiriyoruz. Teknolojiyi ve estetik
+          anlayışı birleştirerek modern mekânların uygulamasında öncü bir firma olmayı hedefliyoruz. Her uyguladığımız
+          projede güven, kalite ve müşteri memnuniyetini en üst düzeyde tutarak, sektörde fark yaratan bir marka olma
+          vizyonunu taşıyoruz.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Değerler -->
+  <section class="section max-w-7xl mx-auto px-6 pb-10">
+    <h3 class="text-xl md:text-2xl font-bold mb-4 reveal">Değerlerimiz</h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="rounded-2xl bg-white p-5 shadow reveal">
+        <h4 class="font-semibold">Güven & Şeffaflık</h4>
+        <p class="text-sm text-neutral-700 mt-2">Sözleşmeden teslimata kadar ölçülebilir süreç ve raporlama.</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow reveal reveal-delay-1">
+        <h4 class="font-semibold">Kalite</h4>
+        <p class="text-sm text-neutral-700 mt-2">Malzeme seçiminden işçiliğe kadar yüksek standartlar.</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow reveal reveal-delay-2">
+        <h4 class="font-semibold">Sürdürülebilirlik</h4>
+        <p class="text-sm text-neutral-700 mt-2">Enerji verimli, uzun ömürlü ve dönüştürülebilir çözümler.</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow reveal reveal-delay-3">
+        <h4 class="font-semibold">Zaman Yönetimi</h4>
+        <p class="text-sm text-neutral-700 mt-2">Gerçekçi takvim, kritik yol planlama ve proaktif koordinasyon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sayaçlar -->
+  <section class="section max-w-7xl mx-auto px-6 pb-12">
+    <div class="rounded-2xl bg-white p-6 shadow grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <div class="reveal"><p class="text-3xl font-extrabold text-brand-500" data-counter="10">0</p><p class="text-sm text-neutral-600 mt-1">yıllık deneyim</p></div>
+      <div class="reveal reveal-delay-1"><p class="text-3xl font-extrabold text-brand-500" data-counter="120">0</p><p class="text-sm text-neutral-600 mt-1">tamamlanan proje</p></div>
+      <div class="reveal reveal-delay-2"><p class="text-3xl font-extrabold text-brand-500" data-counter="30">0</p><p class="text-sm text-neutral-600 mt-1">kurumsal müşteri</p></div>
+      <div class="reveal reveal-delay-3"><p class="text-3xl font-extrabold text-brand-500" data-counter="98">0</p><p class="text-sm text-neutral-600 mt-1">memnuniyet oranı (%)</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section max-w-7xl mx-auto px-6 pb-16">
+    <div class="rounded-2xl bg-white shadow-glow p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 reveal">
+      <div>
+        <h4 class="font-semibold text-lg">Projenizi birlikte hayata geçirelim</h4>
+        <p class="text-sm text-neutral-600">Kısa bir ön görüşme ile ihtiyaçları belirleyelim.</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="contact.html" class="rounded-xl px-4 py-2 bg-brand-500 hover:bg-brand-300 text-white">İletişime Geç</a>
+        <a href="services.html" class="rounded-xl px-4 py-2 ring-1 ring-neutral-300 hover:bg-white">Hizmetler</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ortak FOOTER -->
+  <div id="footer"></div>
+
+  <!-- JS: navbar/footer + reveal + counter + typewriter -->
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/footer.js" defer></script>
+
+  <script>
+    // 1) Scroll'da reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }
+      });
+    },{threshold:0.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // 2) Sayaç animasyonu (reveal olduğunda başlar)
+    function animateCounter(el, target){
+      const dur = 1200, start = 0, t0 = performance.now();
+      function tick(now){
+        const p = Math.min((now - t0)/dur, 1);
+        const val = Math.floor(start + (target - start) * p);
+        el.textContent = (el.dataset.suffix ? val + el.dataset.suffix : val) + (el.dataset.plus || (target>=10?'+':''));
+        if(p<1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    document.querySelectorAll('[data-counter]').forEach(el=>{
+      const obs = new IntersectionObserver((ents)=>{
+        if(ents[0].isIntersecting){ animateCounter(el, parseInt(el.dataset.counter,10)); obs.disconnect(); }
+      },{threshold:0.6});
+      obs.observe(el);
+    });
+
+    // 3) Typewriter (slogan) — sayfanda #slogan yoksa sorun olmaz
+    const target = document.getElementById('slogan');
+    if (target){
+      const text = "Çizilen projeleri hayata geçirmek için yaratıcılığı sağlamlıkla birleştiriyoruz.";
+      let i=0; (function type(){
+        target.textContent = text.slice(0, i++);
+        if(i<=text.length) setTimeout(type, 18);
+      })();
+    }
+  </script>
+</body>
+</html>

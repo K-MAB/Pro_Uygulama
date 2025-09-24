@@ -1,0 +1,54 @@
+<!-- partials/navbar.html -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-all">
+  <nav id="nav"
+       class="mx-auto max-w-7xl flex items-center justify-between
+              px-4 sm:px-6 lg:px-8 py-6 md:py-8 text-white">
+
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="images/logo.svg"
+           alt="Pro Uygulama"
+           class="h-20 w-auto md:h-12 lg:h-40" />
+    </a>
+
+    <!-- Menü (desktop) -->
+    <ul class="hidden md:flex items-center gap-12 font-[500] text-lg">
+      <li><a class="nav-link" href="index.html#hero">Ana Sayfa</a></li>
+      <li><a class="nav-link" href="about.html">Hakkımızda</a></li>
+      <!-- <li><a class="nav-link" href="services.html">Hizmetler</a></li> -->
+      <li><a class="nav-link" href="references.html">Referanslar</a></li>
+      <li><a class="nav-link" href="projects.html">Projeler</a></li>
+      <li><a class="nav-link" href="contact.html">İletişim</a></li>
+    </ul>
+
+    <!-- CTA + Hamburger -->
+    <div class="flex items-center gap-4">
+      <a href="contact.html"
+         class="hidden md:inline-block rounded-xl px-5 py-2 text-base font-medium
+                bg-white/15 hover:bg-white/25 backdrop-blur-sm">
+         Teklif Al
+      </a>
+      <button id="burger"
+              class="md:hidden inline-flex p-3 rounded-lg ring-1 ring-white/40">
+        <span class="sr-only">Menüyü aç</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobil Menü -->
+  <div id="mobileMenu"
+       class="md:hidden hidden bg-neutral-900/80 text-white backdrop-blur-sm
+              py-6 space-y-4 text-xl font-semibold">
+    <a class="block py-4" href="index.html#hero">Ana Sayfa</a>
+    <a class="block py-4" href="about.html">Hakkımızda</a>
+    <!-- <a class="block py-4" href="services.html">Hizmetler</a> -->
+    <a class="block py-4" href="references.html">Referanslar</a>
+    <a class="block py-4" href="projects.html">Projeler</a>
+    <a class="block py-4" href="contact.html">İletişim</a>
+  </div>
+</header>

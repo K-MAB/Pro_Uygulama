@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hizmetler — ASMAB</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme:{ extend:{
+      colors:{ cocoa:'#3b2621', cream:'#f7f3f1', brand:{500:'#13547a',300:'#80d0c7'}},
+      boxShadow:{ glow:'0 10px 30px rgba(0,0,0,.12)'}
+    }}}
+  </script>
+
+  <style>
+    /* Kart hover efektleri */
+    .svc-card{ transition: transform .35s ease, box-shadow .35s ease }
+    .svc-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,.18) }
+    .svc-img:after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.0) 50%);
+      opacity:.85; transition:opacity .35s ease;
+    }
+    .svc-card:hover .svc-img:after{ opacity:.65 }
+    .crumb a{ color:#6b7280 } .crumb a:hover{ color:#374151 }
+  </style>
+</head>
+<body class="bg-cream text-neutral-900">
+
+  <!-- Ortak NAVBAR -->
+  <div id="navbar"></div>
+  <div class="pt-24"></div><!-- navbar boşluğu -->
+
+  <!-- Başlık + breadcrumb -->
+  <section class="max-w-7xl mx-auto px-6">
+    <div class="rounded-2xl bg-gradient-to-r from-neutral-300/60 to-neutral-200/40 p-7 mb-8">
+      <h1 class="text-3xl font-bold">Hizmetler</h1>
+      <p class="text-neutral-700 mt-1">İhtiyacınıza uygun, uçtan uca mimari ve yazılım çözümleri.</p>
+      <nav class="crumb mt-3 text-sm">
+        <a href="index.html">Anasayfa</a> <span class="mx-2">/</span>
+        <span class="text-neutral-800 font-medium">Hizmetler</span>
+      </nav>
+    </div>
+
+    <!-- Filtre (opsiyonel) -->
+    <div class="flex flex-wrap gap-2 mb-6">
+      <button data-filter="all" class="px-4 py-2 rounded-full text-sm bg-white ring-1 ring-neutral-200 hover:bg-neutral-50">Tümü</button>
+      <button data-filter="mimari" class="px-4 py-2 rounded-full text-sm bg-white ring-1 ring-neutral-200 hover:bg-neutral-50">Mimari</button>
+      <button data-filter="uygulama" class="px-4 py-2 rounded-full text-sm bg-white ring-1 ring-neutral-200 hover:bg-neutral-50">Uygulama</button>
+      <button data-filter="endustri" class="px-4 py-2 rounded-full text-sm bg-white ring-1 ring-neutral-200 hover:bg-neutral-50">Endüstri</button>
+    </div>
+
+    <!-- Kartlar -->
+    <div id="svcGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Kart -->
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop"
+               alt="Konsept Tasarım" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">KONSEPT TASARIM</h3>
+          <p class="mt-2 text-neutral-600">İhtiyaca göre özgün konsept geliştirme, moodboard ve 3D önizleme.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">mimari</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="mimari">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1400&auto=format&fit=crop"
+               alt="Mimari Proje" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">MİMARİ PROJE</h3>
+          <p class="mt-2 text-neutral-600">Ön proje, uygulama projesi ve ruhsat süreçleri.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">mimari</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="uygulama">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1400&auto=format&fit=crop"
+               alt="Uygulama Projeleri" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">MİMARİ UYGULAMA PROJELERİ</h3>
+          <p class="mt-2 text-neutral-600">Detay, keşif ve metraj; sahaya hazır dokümantasyon.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">uygulama</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="uygulama">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1400&auto=format&fit=crop"
+               alt="Şantiye Uygulama" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">ŞANTİYE UYGULAMA</h3>
+          <p class="mt-2 text-neutral-600">Saha koordinasyon, iş programı ve kalite kontrol.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">uygulama</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="endustri">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop"
+               alt="Taahhüt İşleri" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">İNŞAAT & TAAHHÜT İŞLERİ</h3>
+          <p class="mt-2 text-neutral-600">Anahtar teslim, hakediş ve sözleşme yönetimi.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">endüstri</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="mimari">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1400&auto=format&fit=crop"
+               alt="Villa Projeleri" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">VİLLA MİMARİ PROJELER</h3>
+          <p class="mt-2 text-neutral-600">Özel konutlarda yüksek yaşam kalitesi odaklı tasarım.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">mimari</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="endustri">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1541976590-713941681591?q=80&w=1400&auto=format&fit=crop"
+               alt="Fabrika Projeleri" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">FABRİKA TAAHHÜT MİMARİ PROJELER</h3>
+          <p class="mt-2 text-neutral-600">Üretim akışına uygun tesis yerleşimi ve mimari.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">endüstri</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="mimari">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1400&auto=format&fit=crop"
+               alt="Daire Projeleri" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">DAİRE MİMARİ PROJELER</h3>
+          <p class="mt-2 text-neutral-600">Plan optimizasyonu ve güncel yönetmeliklere uygunluk.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">mimari</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="svc-card group rounded-2xl overflow-hidden bg-white shadow" data-cat="mimari">
+        <a href="#" class="block relative h-48 svc-img">
+          <img src="https://images.unsplash.com/photo-1507209696998-3c532be9b2b4?q=80&w=1400&auto=format&fit=crop"
+               alt="Ofis Projeleri" class="absolute inset-0 w-full h-full object-cover">
+        </a>
+        <div class="p-5">
+          <h3 class="font-extrabold text-lg tracking-wide">OFİS MİMARİ PROJELER</h3>
+          <p class="mt-2 text-neutral-600">Esnek çalışma alanları ve akustik/aydınlatma çözümleri.</p>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-xs px-2 py-1 rounded bg-brand-300/20 text-brand-500">mimari</span>
+            <a href="#" class="text-sm font-medium text-brand-500 hover:text-brand-300">Detaylar →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Alt CTA -->
+    <div class="mt-10 mb-14 rounded-2xl bg-white shadow-glow p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h4 class="font-semibold text-lg">Projeniz için doğru hizmeti birlikte seçelim</h4>
+        <p class="text-sm text-neutral-600">Kısa bir ön görüşme ile yol haritası çıkaralım.</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="contact.html" class="rounded-xl px-4 py-2 bg-brand-500 hover:bg-brand-300 text-white">İletişime Geç</a>
+        <a href="index.html#about" class="rounded-xl px-4 py-2 ring-1 ring-neutral-300 hover:bg-white">Hakkımızda</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ortak FOOTER -->
+  <div id="footer"></div>
+
+  <!-- Basit filtre JS (tamamen opsiyonel) -->
+  <script>
+    const grid = document.getElementById('svcGrid');
+    const buttons = document.querySelectorAll('[data-filter]');
+    buttons.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const cat = btn.getAttribute('data-filter');
+        grid.querySelectorAll('article').forEach(card=>{
+          const c = card.getAttribute('data-cat') || 'mimari';
+          const show = cat==='all' || c===cat;
+          card.classList.toggle('hidden', !show);
+        });
+        buttons.forEach(b=>b.classList.remove('bg-brand-300/20','text-brand-500'));
+        btn.classList.add('bg-brand-300/20','text-brand-500');
+      });
+    });
+  </script>
+
+  <!-- Navbar & Footer loader -->
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/footer.js"></script>
+</body>
+</html>

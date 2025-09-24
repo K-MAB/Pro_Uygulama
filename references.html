@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Referanslarımız — Pro Uygulama</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme:{ extend:{
+      colors:{ cocoa:'#3b2621', cream:'#efe8e4', brand:{500:'#13547a',300:'#80d0c7'}},
+      boxShadow:{ glow:'0 10px 30px rgba(0,0,0,.12)'}
+    }}}
+  </script>
+</head>
+<body class="bg-cream text-neutral-900">
+
+  <!-- Ortak NAVBAR -->
+  <div id="navbar"></div>
+  <div class="pt-24"></div>
+
+  <!-- Başlık -->
+  <header class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Referanslarımız</h1>
+        <p class="text-neutral-600 mt-2">Seçili işlerden kısa bir vitrin.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Grid -->
+  <main class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+    <div class="grid sm:grid-cols-2 gap-6">
+      <!-- Kart -->
+      <figure class="group rounded-2xl overflow-hidden bg-white shadow-glow cursor-zoom-in" data-ref="assets/img/refs/ref1.jpg">
+        <div class="relative aspect-[16/10]">
+          <img src="images/ref1.png" alt="Referans 1"
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+          <figcaption class="absolute inset-x-0 bottom-0 p-4">
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="group rounded-2xl overflow-hidden bg-white shadow-glow cursor-zoom-in" data-ref="assets/img/refs/ref2.jpg">
+        <div class="relative aspect-[16/10]">
+          <img src="images/ref2.png" alt="Referans 2"
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+          <figcaption class="absolute inset-x-0 bottom-0 p-4">
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="group rounded-2xl overflow-hidden bg-white shadow-glow cursor-zoom-in" data-ref="assets/img/refs/ref3.jpg">
+        <div class="relative aspect-[16/10]">
+          <img src="images/ref3.png" alt="Referans 3"
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+          <figcaption class="absolute inset-x-0 bottom-0 p-4">
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="group rounded-2xl overflow-hidden bg-white shadow-glow cursor-zoom-in" data-ref="assets/img/refs/ref4.jpg">
+        <div class="relative aspect-[16/10]">
+          <img src="images/ref4.png" alt="Referans 4"
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+          <figcaption class="absolute inset-x-0 bottom-0 p-4">
+          </figcaption>
+        </div>
+      </figure>
+
+        <figure class="group rounded-2xl overflow-hidden bg-white shadow-glow cursor-zoom-in" data-ref="assets/img/refs/ref5.jpg">
+        <div class="relative aspect-[16/10]">
+          <img src="images/ref5.png" alt="Referans 4"
+               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+          <figcaption class="absolute inset-x-0 bottom-0 p-4">
+          </figcaption>
+        </div>
+      </figure>
+    </div>
+  </main>
+
+  <!-- Lightbox (basit modal) -->
+  <div id="lightbox" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/80 p-4">
+    <button id="lbClose" class="absolute top-4 right-4 rounded-full bg-white/20 hover:bg-white/30 text-white px-3 py-1 text-sm">Kapat</button>
+    <img id="lbImg" src="" alt="Referans büyük görsel" class="max-h-[90vh] max-w-[92vw] rounded-xl shadow-2xl object-contain" />
+  </div>
+
+  <!-- Ortak FOOTER -->
+  <div id="footer"></div>
+
+  <!-- Navbar & Footer JS -->
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/footer.js" defer></script>
+
+  <!-- Lightbox JS -->
+  <script>
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbClose = document.getElementById('lbClose');
+
+    document.querySelectorAll('figure[data-ref]').forEach(fig => {
+      fig.addEventListener('click', () => {
+        lbImg.src = fig.dataset.ref;
+        lb.classList.remove('hidden');
+        lb.classList.add('flex');
+        document.documentElement.classList.add('overflow-hidden');
+      });
+    });
+    lbClose.addEventListener('click', () => {
+      lb.classList.add('hidden'); lb.classList.remove('flex');
+      lbImg.src = '';
+      document.documentElement.classList.remove('overflow-hidden');
+    });
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) lbClose.click();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lbClose.click();
+    });
+  </script>
+</body>
+</html>

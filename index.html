@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pro Uygulama — Ana Sayfa</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cocoa: '#3b2621',
+            cream: '#efe8e4',
+            brand: { 500: '#13547a', 300: '#80d0c7' }
+          },
+          boxShadow: { glow: '0 10px 30px rgba(0,0,0,.15)' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <style>
+    /* slider içi yazı için hafif blur arka plan */
+    .glass{backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    /* global default okları gizli tutuyoruz (kendi butonlarımızı kullanacağız) */
+    .swiper-button-next,
+    .swiper-button-prev { display: none !important; }
+  </style>
+</head>
+<body class="bg-cream text-neutral-900 selection:bg-brand-300/30">
+
+  <!-- Ortak NAVBAR buraya JS ile enjekte edilir -->
+  <div id="navbar"></div>
+
+  <!-- HERO / FULLSCREEN SLIDER -->
+  <section id="hero" class="relative h-screen">
+    <div class="swiper hero-swiper h-full">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="absolute inset-0">
+            <img src="images/5.gif" class="w-full h-full object-cover" alt="Makine">
+            <div class="absolute inset-0 bg-neutral-900/40"></div>
+          </div>
+          <div class="relative h-full max-w-7xl mx-auto px-6 flex items-end pb-24">
+            
+          </div>
+        </div>
+
+        <!-- buraya başka slide'lar ekleyebilirsin -->
+
+      </div>
+
+      <!-- Swiper navigation -->
+      <div class="swiper-pagination !bottom-6"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- Altta kıvrımlı geçiş -->
+    <svg class="absolute -bottom-px left-0 right-0 w-full" height="80" viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path d="M0,32 C240,80 480,80 720,48 C960,16 1200,16 1440,48 L1440,80 L0,80 Z" fill="#efe8e4"/>
+    </svg>
+  </section>
+
+  <!-- ===== PRO UYGULAMA — FULL BLEED SECTION ===== -->
+  <section class="relative w-full bg-gray-50">
+    <div class="grid md:grid-cols-5 gap-0 min-h-[600px]">
+      <!-- SOL (Metin) 2 kolon -->
+      <div class="md:col-span-2 flex items-center">
+        <div class="w-full px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
+          <h2 class="text-3xl lg:text-5xl font-extrabold tracking-tight">PRO UYGULAMA</h2>
+          <p class="mt-6 text-neutral-700 leading-relaxed text-lg">
+            Pro Uygulama, yenilikçi, yaratıcı ve dinamik kadrosuyla Türkiye genelinde mimarlık ve inşaat sektöründe faaliyet göstermektedir.
+            Kuruluşundan bu yana müşteri memnuniyetini ön planda tutan firmamız; konsept tasarım, mimari proje, uygulama projeleri,
+            şantiye uygulama ve anahtar teslim taahhüt hizmetleri gibi birçok alanda bütüncül çözümler sunar.
+          </p>
+          <p class="mt-6 text-neutral-700 leading-relaxed text-lg">
+            Çizdirdiğiniz projelerinizi konseptten uygulamaya kadar her aşamada; trendleri özgün biçimde uygulayabilen,
+            pozitif bakış açısına sahip ekibimizle en yüksek kalite ve hızda gerçekleştiriyoruz.
+          </p>
+        </div>
+      </div>
+
+      <!-- SAĞ (Görsel) 3 kolon -->
+      <figure class="md:col-span-3 relative h-[400px] md:h-auto">
+        <img src="images/right-image.png"
+             alt="Pro Uygulama bina ve vinç illüstrasyonu"
+             class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent pointer-events-none"></div>
+        <figcaption class="absolute bottom-8 left-8"></figcaption>
+      </figure>
+    </div>
+  </section>
+
+<!-- ===== GENEL BANNER BÖLÜMÜ ===== -->
+<section class="relative w-full bg-neutral-900">
+  <!-- Daha yüksek sabit alan -->
+  <div class="relative h-[900px] md:h-[1080px]">
+    
+    <!-- Arka plan görseli (cover) -->
+    <img src="images/Background.png"
+         alt="Pro Uygulama Banner"
+         class="absolute inset-0 w-full h-full object-cover" />
+
+    <!-- Hafif koyu overlay -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- Orta kısım yazı ve buton -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+      <p class="max-w-3xl text-xl md:text-2xl text-white/90 font-medium leading-relaxed">
+        Pro Uygulama olarak, projelerinizi en yüksek kalite ve hızda hayata geçirmek için buradayız.
+      </p>
+      <a href="contact.html"
+         class="mt-8 px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-300 text-white text-lg font-semibold shadow-lg transition-colors">
+         İletişime Geç
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- ===== Referanslar (Swiper) — FULL WIDTH ===== -->
+  <section class="relative w-full bg-white py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-6">
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Referanslarımız</h2>
+        <a href="references.html" class="text-brand-500 hover:text-brand-300 font-medium">Tümünü Gör</a>
+      </div>
+
+      <div class="swiper ref-swiper">
+        <div class="swiper-wrapper">
+          <!-- 4 slayt -->
+          <div class="swiper-slide">
+            <div class="overflow-hidden rounded-2xl shadow-glow">
+              <img src="images/ref1.png" alt="Referans 1" class="w-full h-64 md:h-80 object-cover">
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="overflow-hidden rounded-2xl shadow-glow">
+              <img src="images/ref2.png" alt="Referans 2" class="w-full h-64 md:h-80 object-cover">
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="overflow-hidden rounded-2xl shadow-glow">
+              <img src="images/ref3.png" alt="Referans 3" class="w-full h-64 md:h-80 object-cover">
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="overflow-hidden rounded-2xl shadow-glow">
+              <img src="images/ref4.png" alt="Referans 4" class="w-full h-64 md:h-80 object-cover">
+            </div>
+          </div>
+           <div class="swiper-slide">
+            <div class="overflow-hidden rounded-2xl shadow-glow">
+              <img src="images/ref5.png" alt="Referans 4" class="w-full h-64 md:h-80 object-cover">
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="mt-6 flex items-center justify-between">
+          <div class="swiper-pagination ref-pagination !static"></div>
+          <div class="flex gap-2">
+            <button class="ref-prev rounded-lg px-3 py-2 ring-1 ring-neutral-300 hover:bg-neutral-50">‹</button>
+            <button class="ref-next rounded-lg px-3 py-2 ring-1 ring-neutral-300 hover:bg-neutral-50">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div id="footer"></div>
+
+  <!-- Ortak footer loader -->
+  <script src="assets/js/footer.js"></script>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // HERO SWIPER
+    new Swiper('.hero-swiper', {
+      loop: true,
+      autoplay: { delay: 3500, disableOnInteraction: false },
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      speed: 600,
+      pagination: { el: '.swiper-pagination', clickable: true }
+    });
+
+    // REFERANSLAR SWIPER
+    new Swiper('.ref-swiper', {
+      loop: true,
+      speed: 700,
+      autoplay: { delay: 3200, disableOnInteraction: false },
+      slidesPerView: 1.15,
+      spaceBetween: 16,
+      centeredSlides: false,
+      breakpoints: {
+        640:  { slidesPerView: 2, spaceBetween: 20 },
+        1024: { slidesPerView: 3, spaceBetween: 24 }
+      },
+      pagination: { el: '.ref-pagination', clickable: true },
+      navigation: { nextEl: '.ref-next', prevEl: '.ref-prev' }
+    });
+  </script>
+
+  <!-- Ortak navbar loader (partials/navbar.html + assets/js/nav.js gerekiyor) -->
+  <script src="assets/js/nav.js"></script>
+</body>
+</html>

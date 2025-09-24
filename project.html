@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pro Uygulama — Proje Detayı</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme:{ extend:{
+        colors:{ cocoa:'#3b2621', cream:'#efe8e4', brand:{500:'#13547a',300:'#80d0c7'} },
+        boxShadow:{ glow:'0 10px 30px rgba(0,0,0,.15)'}
+      }}
+    }
+  </script>
+
+  <style>
+    /* --- thumbs --- */
+    .thumbs{display:flex;gap:.5rem;flex-wrap:nowrap;overflow-x:auto;padding-bottom:.25rem}
+    .thumbs::-webkit-scrollbar{height:8px}
+    .thumbs::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:999px}
+    .thumb{width:72px;min-width:72px;height:72px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer}
+    .thumb.active{border-color:#111}
+
+    /* --- nav buttons --- */
+    .navbtn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border-radius:999px;width:42px;height:42px;display:flex;align-items:center;justify-content:center}
+    .navbtn:hover{background:rgba(0,0,0,.6)}
+    .nav-prev{left:10px}
+    .nav-next{right:10px}
+
+    /* --- fullscreen davranışı --- */
+    #fsContainer:fullscreen,
+    #fsContainer:-webkit-full-screen{
+      background:#000;
+      width:100vw; height:100vh;
+    }
+    #fsContainer:fullscreen #mainImg,
+    #fsContainer:-webkit-full-screen #mainImg{
+      width:100vw; height:100vh;
+      object-fit:contain;
+      object-position:center center;
+    }
+    #fsContainer:fullscreen .navbtn,
+    #fsContainer:-webkit-full-screen .navbtn{
+      width:56px; height:56px; font-size:22px
+    }
+  </style>
+</head>
+<body class="bg-cream text-neutral-900 selection:bg-brand-300/30" style="margin-top: 100px;">
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <main class="max-w-7xl mx-auto px-6 py-10">
+    <a href="projects.html" class="inline-flex items-center gap-2 text-sm text-brand-500 hover:text-brand-300 mb-4">← Projelere dön</a>
+
+    <h1 id="title" class="text-3xl md:text-4xl font-extrabold tracking-tight mb-6"></h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <article id="desc" class="bg-white rounded-2xl p-6 shadow-glow leading-relaxed"></article>
+
+      <!-- GALERİ -->
+      <section>
+        <div id="fsContainer" class="relative rounded-2xl overflow-hidden shadow-glow select-none">
+          <img id="mainImg" src="" alt="" class="w-full h-[440px] object-cover cursor-zoom-in" />
+          <button type="button" class="navbtn nav-prev" aria-label="Önceki" id="btnPrev">‹</button>
+          <button type="button" class="navbtn nav-next" aria-label="Sonraki" id="btnNext">›</button>
+          <div id="hint" class="absolute bottom-2 right-2 text-[11px] text-white/90 bg-black/40 px-2 py-1 rounded">
+            Görsele tıkla: Tam ekran
+          </div>
+        </div>
+        <div id="thumbs" class="thumbs mt-3"></div>
+      </section>
+    </div>
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold mb-3">Benzer Projeler</h2>
+      <div id="similar" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- partial loaders -->
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/footer.js"></script>
+
+  <!-- Sayfa JS -->
+  <script>
+    /* ================== DATA ================== */
+    const DATA = {
+      "cosmo-otel": {
+        title: "Cosmo Otel Awm",
+         desc: "Projelerinizi yalnızca tasarlamakla kalmıyor, hayata geçirilme sürecinin her aşamasında yanınızda oluyoruz. Fikirlerin oluşumundan uygulama detaylarına,  anahtar teslimine kadar her adımı sistemli ve özenli bir şekilde yürütüyoruz. Markaların kimliklerine sadık kalarak mağaza, ofis ve diğer ticari alanlar için özgün konseptler geliştiriyor, deneyimli ekibimizle projelerinizi en kısa sürede ve en yüksek kalite standartlarında tamamlıyoruz. Disiplinli çalışma anlayışımız, yenilikçi bakış açımız ve çözüm odaklı ekibimizle; ülkemizde ve yurt dışında birçok seçkin markaya değer katmaya devam ediyoruz.",
+        images: [
+          "images/cosmo_otel_içi_awm/cosmo1.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo2.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo3.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo4.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo5.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo6.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo7.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo8.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo9.jpeg",
+          "images/cosmo_otel_içi_awm/cosmo10.jpeg"
+        ],
+        similar: ["nova-evaletleri","deo-dent"]
+      },
+      "nova-evaletleri": {
+        title: "Nova Ev Aletleri Showroom",
+       desc: "Projelerinizi yalnızca tasarlamakla kalmıyor, hayata geçirilme sürecinin her aşamasında yanınızda oluyoruz. Fikirlerin oluşumundan uygulama detaylarına,  anahtar teslimine kadar her adımı sistemli ve özenli bir şekilde yürütüyoruz. Markaların kimliklerine sadık kalarak mağaza, ofis ve diğer ticari alanlar için özgün konseptler geliştiriyor, deneyimli ekibimizle projelerinizi en kısa sürede ve en yüksek kalite standartlarında tamamlıyoruz. Disiplinli çalışma anlayışımız, yenilikçi bakış açımız ve çözüm odaklı ekibimizle; ülkemizde ve yurt dışında birçok seçkin markaya değer katmaya devam ediyoruz.",
+        images: [
+          "images/nova_evaletleri_showroom/nova1.jpeg",
+          "images/nova_evaletleri_showroom/nova2.jpeg",
+          "images/nova_evaletleri_showroom/nova3.jpeg",
+          "images/nova_evaletleri_showroom/nova4.jpeg",
+          "images/nova_evaletleri_showroom/nova5.jpeg",
+          "images/nova_evaletleri_showroom/nova6.jpeg",
+          "images/nova_evaletleri_showroom/nova7.jpeg",
+          "images/nova_evaletleri_showroom/nova8.jpeg",
+          "images/nova_evaletleri_showroom/nova9.jpeg",
+          "images/nova_evaletleri_showroom/nova10.jpeg"
+        ],
+        similar: ["cosmo-otel","deo-dent"]
+      },
+      "deo-dent": {
+        title: "Doredent Ağız Ve Diş Sağlığı Polikliniği",
+        desc: "Projelerinizi yalnızca tasarlamakla kalmıyor, hayata geçirilme sürecinin her aşamasında yanınızda oluyoruz. Fikirlerin oluşumundan uygulama detaylarına,  anahtar teslimine kadar her adımı sistemli ve özenli bir şekilde yürütüyoruz. Markaların kimliklerine sadık kalarak mağaza, ofis ve diğer ticari alanlar için özgün konseptler geliştiriyor, deneyimli ekibimizle projelerinizi en kısa sürede ve en yüksek kalite standartlarında tamamlıyoruz. Disiplinli çalışma anlayışımız, yenilikçi bakış açımız ve çözüm odaklı ekibimizle; ülkemizde ve yurt dışında birçok seçkin markaya değer katmaya devam ediyoruz.",
+        images: ["images/deodent/deo1.jpg",
+        "images/deodent/deo2.jpg",
+          "images/deodent/deo3.jpg",
+          "images/deodent/deo4.jpg",
+          "images/deodent/deo5.jpg",
+          "images/deodent/deo6.jpg",
+          "images/deodent/deo7.jpg",
+          "images/deodent/deo8.jpg",
+          "images/deodent/deo9.jpg",
+          "images/deodent/deo10.jpg",
+          "images/deodent/deo11.jpg",
+          "images/deodent/deo12.jpg",
+        ],
+        similar: ["cosmo-otel","nova-evaletleri"]
+      },
+      "kfc-tuzla": {
+        title: "KFC İSTANBUL TUZLA EVORA AVM",
+        desc: "AVM içi hızlı kurulum, koordinasyon ve işletme standartlarına uyum.",
+        images: ["images/kfc2.jpg","images/kfc2-2.jpg"],
+        similar: ["cosmo-otel","nova-evaletleri","nord-lock"]
+      }
+    };
+
+    /* ============== STATE & ELEMENTS ============== */
+    const params = new URLSearchParams(location.search);
+    const pid = params.get("id");
+    const p   = DATA[pid];
+
+    const titleEl  = document.getElementById("title");
+    const descEl   = document.getElementById("desc");
+    const mainImg  = document.getElementById("mainImg");
+    const fsBox    = document.getElementById("fsContainer");
+    const thumbsEl = document.getElementById("thumbs");
+    const simEl    = document.getElementById("similar");
+    const btnPrev  = document.getElementById("btnPrev");
+    const btnNext  = document.getElementById("btnNext");
+    const hintEl   = document.getElementById("hint");
+
+    let idx = 0;
+    let startX = 0;
+
+    if (!p) {
+      document.body.innerHTML = '<div class="max-w-3xl mx-auto p-8">Proje bulunamadı. <a class="text-brand-500" href="projects.html">Projelere dön</a></div>';
+    } else {
+      /* ---------- Render meta ---------- */
+      titleEl.textContent = p.title;
+      descEl.textContent  = p.desc;
+
+      /* ---------- Preload ---------- */
+      p.images.forEach(src => { const im = new Image(); im.src = src; });
+
+      /* ---------- Thumbs ---------- */
+      thumbsEl.innerHTML = "";
+      p.images.forEach((src, i) => {
+        const t = document.createElement("img");
+        t.src = src; t.alt = p.title + " küçük " + (i+1);
+        t.className = "thumb" + (i===0 ? " active" : "");
+        t.addEventListener("click", () => go(i));
+        thumbsEl.appendChild(t);
+      });
+
+      /* ---------- Main image initial ---------- */
+      mainImg.src = p.images[0];
+      mainImg.alt = p.title;
+      mainImg.addEventListener("click", toggleFullscreen);
+
+      /* ---------- Nav buttons ---------- */
+      btnPrev.addEventListener("click", prev);
+      btnNext.addEventListener("click", next);
+
+      /* ---------- Keyboard arrows / ESC ---------- */
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") next();
+        if (e.key === "ArrowLeft")  prev();
+        if (e.key === "Escape" && document.fullscreenElement) document.exitFullscreen();
+      });
+
+      /* ---------- Touch swipe ---------- */
+      fsBox.addEventListener("touchstart", (e)=>{startX = e.touches[0].clientX;}, {passive:true});
+      fsBox.addEventListener("touchend",   (e)=>{
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+      });
+
+      /* ---------- Similar ---------- */
+      p.similar.forEach(id=>{
+        const sp = DATA[id];
+        const a = document.createElement("a");
+        a.href = `project.html?id=${id}`;
+        a.className = "block bg-white rounded-2xl overflow-hidden shadow-glow";
+        a.innerHTML = `<img src="${sp.images[0]}" class="w-full h-36 object-cover" alt="${sp.title}">
+                       <div class="p-3 text-sm font-medium leading-snug">${sp.title}</div>`;
+        simEl.appendChild(a);
+      });
+    }
+
+    /* ============== Helpers ============== */
+    function go(i){
+      if(!p) return;
+      idx = (i + p.images.length) % p.images.length;
+      mainImg.src = p.images[idx];
+      // thumbs active
+      [...thumbsEl.children].forEach((el, k) => el.classList.toggle("active", k === idx));
+      // görünür alana kaydır
+      const activeThumb = thumbsEl.children[idx];
+      if (activeThumb?.scrollIntoView) activeThumb.scrollIntoView({inline:"center", block:"nearest", behavior:"smooth"});
+    }
+    function next(){ go(idx + 1); }
+    function prev(){ go(idx - 1); }
+
+    function toggleFullscreen(){
+      if (!document.fullscreenElement) {
+        fsBox.requestFullscreen?.();
+      } else {
+        document.exitFullscreen?.();
+      }
+    }
+
+    // Tam ekran durumunda img imleci ve ipucu
+    function onFsChange(){
+      const full = !!document.fullscreenElement;
+      mainImg.classList.toggle('cursor-zoom-in', !full);
+      mainImg.classList.toggle('cursor-zoom-out', full);
+      if(hintEl) hintEl.style.display = full ? 'none' : '';
+    }
+    document.addEventListener('fullscreenchange', onFsChange);
+  </script>
+</body>
+</html>

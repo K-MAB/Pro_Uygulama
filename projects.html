@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pro Uygulama — Projeler</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors:{ cocoa:'#3b2621', cream:'#efe8e4', brand:{500:'#13547a',300:'#80d0c7'} },
+          boxShadow:{ glow:'0 10px 30px rgba(0,0,0,.15)'}
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* küçük dokunuşlar */
+    .card-hover{transition:transform .2s ease, box-shadow .2s ease}
+    .card-hover:hover{transform:translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,.12)}
+    .chip{font-size:.75rem;border:1px solid rgb(0 0 0 / .08);padding:.15rem .5rem;border-radius:.5rem}
+    .divider{height:1px;background:rgba(0,0,0,.06)}
+    .input{border:1px solid rgba(0,0,0,.12);border-radius:.6rem;padding:.6rem .8rem}
+    .check{accent-color:#13547a}
+  </style>
+</head>
+<body class="bg-cream text-neutral-900 selection:bg-brand-300/30 " style="margin-top: 90px;">
+
+  <!-- Navbar partial -->
+  <div id="navbar"></div>
+
+  <header class="bg-white border-b border-black/10">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Projeler</h1>
+      <p class="text-neutral-600 mt-1">Tamamlanan ve devam eden seçili referanslarımız.</p>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <!-- SOL: Liste -->
+      <section class="lg:col-span-2">
+        <!-- üst çubuk -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+          <div class="text-sm text-neutral-600"><span id="resultCount">0</span> sonuç</div>
+          <div class="flex items-center gap-2">
+            <label class="text-sm text-neutral-600">Sırala:</label>
+            <select id="sortSelect" class="input bg-white">
+              <option value="new">En yeni</option>
+              <option value="az">A→Z</option>
+              <option value="za">Z→A</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid: satırda 2 proje -->
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+      </section>
+
+      <!-- SAĞ: Filtreler -->
+      <aside class="lg:col-span-1">
+        <div class="bg-white rounded-2xl p-5 shadow-glow">
+          <h2 class="text-lg font-semibold mb-3">Filtrele</h2>
+
+          <label class="text-sm mb-1 block">Arama</label>
+          <input id="q" type="search" placeholder="Başlık / marka / şehir…" class="input w-full mb-4 bg-white">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+            <div>
+              <label class="text-sm mb-1 block">Marka</label>
+              <select id="brand" class="input w-full bg-white">
+                <option value="">Hepsi</option>
+                <option>Cosmo</option>
+                <option>Nova</option>
+                <option>Deo-Dent</option>
+                <option>KFC</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-sm mb-1 block">Şehir</label>
+              <select id="city" class="input w-full bg-white">
+                <option value="">Hepsi</option>
+                <option>İstanbul</option>
+                <option>Kocaeli</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="my-4 divider"></div>
+
+          <fieldset class="space-y-2">
+            <legend class="text-sm mb-1 font-medium">Durum</legend>
+            <label class="flex items-center gap-2 text-sm">
+              <input id="stDone" type="checkbox" class="check" checked> Tamamlanan
+            </label>
+            <label class="flex items-center gap-2 text-sm">
+              <input id="stProg" type="checkbox" class="check" checked> Devam Eden
+            </label>
+          </fieldset>
+
+          <div class="my-4 divider"></div>
+
+          <div class="flex gap-2">
+            <button id="applyBtn" class="flex-1 rounded-xl px-4 py-2 bg-brand-500 hover:bg-brand-300 text-white">Uygula</button>
+            <button id="clearBtn" class="rounded-xl px-4 py-2 bg-neutral-100 hover:bg-neutral-200">Temizle</button>
+          </div>
+
+          <p class="text-xs text-neutral-500 mt-3">İpucu: yazarken liste anlık süzülür.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer partial -->
+  <div id="footer"></div>
+
+  <!-- partial loader'lar (mevcut projendeki gibi) -->
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/footer.js"></script>
+
+  <!-- Sayfa JS (gömülü) -->
+  <script>
+    // --- Veri ---
+    const projects = [
+      {
+        id: 'cosmo-otel',
+        title: 'Cosmo Otel Awm',
+        brand: 'Cosmo',
+        city: 'İstanbul',
+        status: 'done', // done | progress
+        img: 'images/cosmo_otel_içi_awm/cosmo8.jpeg',
+        tags: ['otel','iç mimari']
+      },
+      {
+        id: 'nova-evaletleri',
+        title: 'Nova Ev Aletleri Showroom',
+        brand: 'Nova',
+        city: 'İstanbul',
+        status: 'done',
+        img: 'images/nova_evaletleri_showroom/nova10.jpeg',
+        tags: ['showroom','iç mimari']
+      },
+      {
+        id: 'deo-dent',
+        title: 'Doredent Ağız Ve Diş Sağlığı Polikliniği',
+        brand: 'Doredent',
+        city: 'İstanbul',
+        status: 'done',
+        img: 'images/deodent/deo4.jpg',
+        tags: ['Diş Hekimliği','yenileme']
+      },
+      // {
+      //   id: 'kfc-tuzla',
+      //   title: 'KFC İSTANBUL TUZLA EVORA AVM',
+      //   brand: 'KFC',
+      //   city: 'İstanbul',
+      //   status: 'progress',
+      //   img: 'images/kfc2.jpg',
+      //   tags: ['restoran','uygulama']
+      // }
+    ];
+
+    // --- Elemanlar ---
+    const grid = document.getElementById('grid');
+    const resultCount = document.getElementById('resultCount');
+    const q = document.getElementById('q');
+    const brand = document.getElementById('brand');
+    const city = document.getElementById('city');
+    const stDone = document.getElementById('stDone');
+    const stProg = document.getElementById('stProg');
+    const sortSelect = document.getElementById('sortSelect');
+
+    // --- Render ---
+    function render(list){
+      grid.innerHTML = '';
+      resultCount.textContent = list.length;
+
+      if(!list.length){
+        grid.innerHTML = `<div class="col-span-full rounded-xl bg-white p-6 text-center text-neutral-600">Kriterlere uygun proje bulunamadı.</div>`;
+        return;
+      }
+
+      list.forEach(p=>{
+        const card = document.createElement('a');
+        card.href = `project.html?id=${p.id}`;
+        card.className = 'block bg-white rounded-2xl overflow-hidden card-hover';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="font-semibold leading-snug">${p.title}</h3>
+            <div class="mt-2 text-sm text-neutral-600">${p.brand} • ${p.city}</div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              ${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}
+            </div>
+            <div class="mt-4 text-xs ${p.status==='done'?'text-emerald-600':'text-amber-600'}">
+              ${p.status==='done'?'Tamamlandı':'Devam ediyor'}
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // --- Filtre + Sıralama ---
+    function getFiltered(){
+      const text = q.value.trim().toLowerCase();
+      const b = brand.value;
+      const c = city.value;
+      const allowDone = stDone.checked;
+      const allowProg = stProg.checked;
+
+      let list = projects.filter(p=>{
+        const textOk = !text || (p.title.toLowerCase().includes(text) || p.brand.toLowerCase().includes(text) || p.city.toLowerCase().includes(text));
+        const brandOk = !b || p.brand === b;
+        const cityOk  = !c || p.city === c;
+        const statusOk = (p.status==='done' && allowDone) || (p.status==='progress' && allowProg);
+        return textOk && brandOk && cityOk && statusOk;
+      });
+
+      // sort
+      const s = sortSelect.value;
+      if(s==='az') list.sort((a,b)=>a.title.localeCompare(b.title,'tr'));
+      if(s==='za') list.sort((a,b)=>b.title.localeCompare(a.title,'tr'));
+      // 'new' -> varsayılan sıra (girildiği sıra)
+
+      return list;
+    }
+
+    // --- Debounce arama ---
+    function debounce(fn,ms=250){let t;return (...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}}
+    const refresh = ()=>render(getFiltered());
+    const refreshDebounced = debounce(refresh, 200);
+
+    // --- Events ---
+    q.addEventListener('input', refreshDebounced);
+    brand.addEventListener('change', refresh);
+    city.addEventListener('change', refresh);
+    stDone.addEventListener('change', refresh);
+    stProg.addEventListener('change', refresh);
+    sortSelect.addEventListener('change', refresh);
+    document.getElementById('applyBtn').addEventListener('click', refresh);
+    document.getElementById('clearBtn').addEventListener('click', ()=>{
+      q.value=''; brand.value=''; city.value='';
+      stDone.checked = true; stProg.checked = true; sortSelect.value='new';
+      refresh();
+    });
+
+    // init
+    render(projects);
+  </script>
+</body>
+</html>
