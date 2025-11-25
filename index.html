@@ -33,6 +33,12 @@
     /* global default okları gizli tutuyoruz (kendi butonlarımızı kullanacağız) */
     .swiper-button-next,
     .swiper-button-prev { display: none !important; }
+
+    /* aşağı kaydır animasyonu */
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateY(0); opacity: 0.8; }
+      50% { transform: translateY(10px); opacity: 1; }
+    }
   </style>
 </head>
 <body class="bg-cream text-neutral-900 selection:bg-brand-300/30">
@@ -65,6 +71,17 @@
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
     </div>
+
+    <!-- AŞAĞI KAYDIR BUTONU -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-50">
+      <div class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center animate-[bounceArrow_1.6s_infinite]">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-neutral-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+      <span class="text-white text-sm font-medium drop-shadow">Aşağı Kaydır</span>
+    </div>
+    <!-- BİTİŞ -->
 
     <!-- Altta kıvrımlı geçiş -->
     <svg class="absolute -bottom-px left-0 right-0 w-full" height="80" viewBox="0 0 1440 80" preserveAspectRatio="none">
@@ -104,18 +121,12 @@
 
 <!-- ===== GENEL BANNER BÖLÜMÜ ===== -->
 <section class="relative w-full bg-neutral-900">
-  <!-- Daha yüksek sabit alan -->
   <div class="relative h-[900px] md:h-[1080px]">
-    
-    <!-- Arka plan görseli (cover) -->
     <img src="images/Background.png"
          alt="Pro Uygulama Banner"
          class="absolute inset-0 w-full h-full object-cover" />
-
-    <!-- Hafif koyu overlay -->
     <div class="absolute inset-0 bg-black/40"></div>
 
-    <!-- Orta kısım yazı ve buton -->
     <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
       <p class="max-w-3xl text-xl md:text-2xl text-white/90 font-medium leading-relaxed">
         Pro Uygulama olarak, projelerinizi en yüksek kalite ve hızda hayata geçirmek için buradayız.
@@ -219,5 +230,10 @@
 
   <!-- Ortak navbar loader (partials/navbar.html + assets/js/nav.js gerekiyor) -->
   <script src="assets/js/nav.js"></script>
+  <a href="https://wa.me/905369586310"
+   target="_blank"
+   class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 shadow-xl rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+    <img src="images/whatsapp.svg" alt="WhatsApp" class="w-10 h-10">
+</a>
 </body>
 </html>
